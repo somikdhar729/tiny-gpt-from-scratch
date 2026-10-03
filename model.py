@@ -249,9 +249,9 @@ def softmax_overflow_demo(large_value):
     Return {'naive_exp': float, 'overflowed': bool}.
     """
     # TODO: exponentiate large_value via array_exp and report whether it is inf.
-    out_r = np.sum(np.exp(large_value))
+    out_r = np.exp(large_value)
     out = {}
-    out['naive_exp'] = out_r
+    out['naive_exp'] = float(out_r)
     out['overflowed'] = np.isinf(out['naive_exp']).any()
     
     return out
