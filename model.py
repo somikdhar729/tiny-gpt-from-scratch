@@ -218,7 +218,7 @@ import numpy as np
 def matmul(a, b):
     """Return the matrix product a @ b for 2D arrays a (M,K) and b (K,N)."""
     # TODO: compute the matrix product of a and b
-    return a @ b
+    return np.matmul(a, b)
 
 # Step 28 - transpose_matrix (not yet solved)
 # TODO: implement
