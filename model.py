@@ -307,8 +307,13 @@ def pick_block_size(default_size):
     """Return the context length (block_size) for training windows."""
     return max(1, default_size)
 
-# Step 39 - slice_x_at_offset (not yet solved)
-# TODO: implement
+# Step 39 - slice_x_at_offset
+import numpy as np
+
+def slice_x_at_offset(data, i, block_size):
+    """Return the input window data[i : i + block_size]."""
+    # TODO: extract a single input window of length block_size starting at index i
+    return np.array(data[i:i + block_size])
 
 # Step 40 - slice_y_at_offset (not yet solved)
 # TODO: implement
