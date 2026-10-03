@@ -16,7 +16,6 @@ def build_vocab(text):
 # Step 2 - build_stoi
 def build_stoi(vocab):
     """Return a dict mapping each character in vocab to its index."""
-    # TODO: map each character in vocab to its integer position
     out = {}
     for i in range(len(vocab)):
         out[vocab[i]] = i
