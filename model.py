@@ -22,8 +22,13 @@ def build_stoi(vocab):
     
     return out
 
-# Step 3 - build_itos (not yet solved)
-# TODO: implement
+# Step 3 - build_itos
+def build_itos(vocab):
+    """Return a dict mapping each index 0..len(vocab)-1 to its character."""
+    out = {}
+    for i in range(len(vocab)):
+        out[i] = vocab[i]
+    return out
 
 # Step 4 - encode_char (not yet solved)
 # TODO: implement
