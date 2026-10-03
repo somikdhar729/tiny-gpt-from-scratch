@@ -326,7 +326,7 @@ def slice_y_at_offset(data, i, block_size):
 def sample_random_batch_offsets(data_len, block_size, batch_size, rng):
     """Sample batch_size random valid starting offsets for (block_size+1)-windows."""
     # TODO: sample batch_size offsets in the valid range for a (block_size+1)-window.
-    return rng.integers(0, data_len - block_size - 1, size = batch_size)
+    return rng.integers(0, data_len - block_size, size = batch_size)
 
 # Step 42 - stack_x_batch
 import numpy as np
@@ -350,8 +350,15 @@ def stack_y_batch(data, offsets, block_size):
         res.append(slice_y_at_offset(data, i, block_size))
     return np.array(res)
 
-# Step 44 - get_batch (not yet solved)
-# TODO: implement
+# Step 44 - get_batch
+def get_batch(data, block_size, batch_size, rng):
+    # TODO: package one training batch (X, Y) of shape (batch_size, block_size) from data using rng.
+    offsets = sample_random_batch_offsets(len(data), block_size, batch_size, rng)
+
+    X = stack_x_batch(data, offsets, block_size)
+    Y = stack_y_batch(data, offsets, block_size)
+
+    return np.array((X, Y))
 
 # Step 45 - allocate_count_matrix (not yet solved)
 # TODO: implement
