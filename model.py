@@ -35,8 +35,15 @@ def encode_char(ch, stoi):
     """Return the integer token id for a single character ch using stoi."""
     return stoi.get(ch)
 
-# Step 5 - encode_string (not yet solved)
-# TODO: implement
+# Step 5 - encode_string
+def encode_string(text, stoi):
+    """Encode a full string into a list of token ids using stoi."""
+    # TODO: map each char in text through stoi (via encode_char) into a list of ids
+    out = []
+    for i in text:
+        if i in stoi:
+            out.append(encode_char(i, stoi))
+    return out
 
 # Step 6 - decode_int (not yet solved)
 # TODO: implement
