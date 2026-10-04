@@ -537,8 +537,27 @@ def cross_entropy_loss(probs, targets):
     B, V = probs.shape
     return (-1 / B) * sum_all(array_log(gather_correct_token_probs(probs, targets)))
 
-# Step 66 - derive_dlogits_on_paper (not yet solved)
-# TODO: implement
+# Step 66 - derive_dlogits_on_paper
+def derive_dlogits_on_paper():
+    """Return a string summarizing the derivation of dL/dlogits for mean cross-entropy."""
+    return """
+1. Definitions:
+   - Softmax probabilities: p_{b, c} = exp(z_{b, c}) / sum_{k} exp(z_{b, k})
+   - Batch Loss L: (1 / B) * sum_{b=1}^{B} l_b, where l_b = -ln(p_{b, y_b})
+
+2. Gradient of Softmax w.r.t Logits (for a single sample b):
+   - dp_{b, c} / dz_{b, j} = p_{b, j} * (1 - p_{b, j})   if c == j
+   - dp_{b, c} / dz_{b, j} = -p_{b, c} * p_{b, j}       if c != j
+
+3. Gradient of Sample Loss l_b w.r.t Logits z_{b, j}:
+   - dl_b / dz_{b, j} = - (1 / p_{b, y_b}) * (dp_{b, y_b} / dz_{b, j})
+   - Case 1 (j == y_b): - (1 / p_{b, y_b}) * p_{b, y_b} * (1 - p_{b, y_b}) = p_{b, y_b} - 1
+   - Case 2 (j != y_b): - (1 / p_{b, y_b}) * (-p_{b, y_b} * p_{b, j})     = p_{b, j}
+   - Combined in vector form: dl_b / dz_b = p_b - y_{one_hot, b}
+
+4. Averaging over the Batch (B):
+   dL/dlogits = (probs - onehot(targets)) / B
+"""
 
 # Step 67 - compute_dlogits (not yet solved)
 # TODO: implement
