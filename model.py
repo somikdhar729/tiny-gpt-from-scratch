@@ -638,8 +638,11 @@ def bias_add_forward(x, b):
     # TODO: add b to each row of x and cache b's shape for the backward pass
     return {'y': x + b, 'cache': {'b_shape': b.shape}}
 
-# Step 80 - bias_add_backward_db (not yet solved)
-# TODO: implement
+# Step 80 - bias_add_backward_db
+def bias_add_backward_db(dy, cache):
+    """Compute db from upstream gradient dy for y = x + b."""
+    # TODO: sum the upstream gradient over the batch dimension to get db of shape (D,)
+    return sum_axis0(dy)
 
 # Step 81 - relu_forward (not yet solved)
 # TODO: implement
