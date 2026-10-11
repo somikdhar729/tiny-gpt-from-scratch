@@ -923,8 +923,16 @@ def output_projection_backward(d_proj, cache):
 # Step 130 - multihead_reshape_transpose_backward (not yet solved)
 # TODO: implement
 
-# Step 131 - ffn_linear_one_forward (not yet solved)
-# TODO: implement
+# Step 131 - ffn_linear_one_forward
+def ffn_linear_one_forward(x, w1, b1):
+    """First FFN linear: lift (B, T, d_model) up to (B, T, d_ff) and add bias."""
+    # TODO: apply the first FFN linear that expands d_model to d_ff
+    temp1 = linear_forward(x, w1)
+    temp2 = bias_add_forward(temp1['y'], b1)
+    cache = temp1['cache']
+    cache['w1'] = cache.pop('w')
+
+    return {'h1': temp2['y'], 'cache': temp1['cache']}
 
 # Step 132 - ffn_activation_forward (not yet solved)
 # TODO: implement
